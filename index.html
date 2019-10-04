@@ -1,13 +1,64 @@
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8" />
+<head>
 
-<title>01_introduction</title>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+
+<title>all slides</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
+<!-- General and theme style sheets -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/css/reveal.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/css/theme/simple.css" id="theme">
 
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+}
+
+</script>
+
+<!--[if lt IE 9]>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/lib/js/html5shiv.js"></script>
+<![endif]-->
+
+<!-- Loading the mathjax macro -->
+<!-- Load mathjax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    <!-- End of mathjax configuration -->
+
+<!-- Get Font-awesome from cdn -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 
 <style type="text/css">
     /*!
@@ -13021,59 +13072,133 @@ ul.typeahead-list  > li > a.pull-right {
 
 <style type="text/css">
 /* Overrides of notebook CSS for static HTML export */
-body {
-  overflow: visible;
-  padding: 8px;
+.reveal {
+  font-size: 160%;
 }
-
-div#notebook {
-  overflow: visible;
-  border-top: none;
-}@media print {
-  div.cell {
-    display: block;
-    page-break-inside: avoid;
-  } 
-  div.output_wrapper { 
-    display: block;
-    page-break-inside: avoid; 
-  }
-  div.output { 
-    display: block;
-    page-break-inside: avoid; 
-  }
+.reveal pre {
+  width: inherit;
+  padding: 0.4em;
+  margin: 0px;
+  font-family: monospace, sans-serif;
+  font-size: 80%;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+}
+.reveal pre code {
+  padding: 0px;
+}
+.reveal section img {
+  border: 0px solid black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+}
+.reveal i {
+  font-style: normal;
+  font-family: FontAwesome;
+  font-size: 2em;
+}
+.reveal .slides {
+  text-align: left;
+}
+.reveal.fade {
+  opacity: 1;
+}
+.reveal .progress {
+  position: static;
+}
+.reveal .controls .navigate-left,
+.reveal .controls .navigate-left.enabled {
+  border-right-color: #727272;
+}
+.reveal .controls .navigate-left.enabled:hover,
+.reveal .controls .navigate-left.enabled.enabled:hover {
+  border-right-color: #dfdfdf;
+}
+.reveal .controls .navigate-right,
+.reveal .controls .navigate-right.enabled {
+  border-left-color: #727272;
+}
+.reveal .controls .navigate-right.enabled:hover,
+.reveal .controls .navigate-right.enabled.enabled:hover {
+  border-left-color: #dfdfdf;
+}
+.reveal .controls .navigate-up,
+.reveal .controls .navigate-up.enabled {
+  border-bottom-color: #727272;
+}
+.reveal .controls .navigate-up.enabled:hover,
+.reveal .controls .navigate-up.enabled.enabled:hover {
+  border-bottom-color: #dfdfdf;
+}
+.reveal .controls .navigate-down,
+.reveal .controls .navigate-down.enabled {
+  border-top-color: #727272;
+}
+.reveal .controls .navigate-down.enabled:hover,
+.reveal .controls .navigate-down.enabled.enabled:hover {
+  border-top-color: #dfdfdf;
+}
+.reveal .progress span {
+  background: #727272;
+}
+div.input_area {
+  padding: 0.06em;
+}
+div.code_cell {
+  background-color: transparent;
+}
+div.prompt {
+  width: 11ex;
+  padding: 0.4em;
+  margin: 0px;
+  font-family: monospace, sans-serif;
+  font-size: 80%;
+  text-align: right;
+}
+div.output_area pre {
+  font-family: monospace, sans-serif;
+  font-size: 80%;
+}
+div.output_prompt {
+  /* 5px right shift to account for margin in parent container */
+  margin: 5px 5px 0 0;
+}
+div.text_cell.rendered .rendered_html {
+  /* The H1 height seems miscalculated, we are just hidding the scrollbar */
+  overflow-y: hidden;
+}
+a.anchor-link {
+  /* There is still an anchor, we are only hidding it */
+  display: none;
+}
+.rendered_html p {
+  text-align: inherit;
+}
+::-webkit-scrollbar
+{
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar *
+{
+  background:transparent;
+}
+::-webkit-scrollbar-thumb
+{
+  background: #727272 !important;
 }
 </style>
 
 <!-- Custom stylesheet, it must be in the same directory as the html file -->
 <link rel="stylesheet" href="custom.css">
 
-<!-- Loading mathjax macro -->
-<!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
-    <!-- MathJax configuration -->
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-            processEscapes: true,
-            processEnvironments: true
-        },
-        // Center justify equations in code and markdown cells. Elsewhere
-        // we use CSS to left justify single line equations in code cells.
-        displayAlign: 'center',
-        "HTML-CSS": {
-            styles: {'.MathJax_Display': {"margin": 0}},
-            linebreaks: { automatic: true }
-        }
-    });
-    </script>
-    <!-- End of mathjax configuration --></head>
-<body>
-  <div tabindex="-1" id="notebook" class="border-box-sizing">
-    <div class="container" id="notebook-container">
+</head>
 
+
+<body>
+
+
+<div class="reveal">
+<div class="slides">
+<section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13085,7 +13210,7 @@ To view a copy of this license, visit <a href="http://creativecommons.org/licens
 
 </div>
 </div>
-</div>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13111,7 +13236,7 @@ To view a copy of this license, visit <a href="http://creativecommons.org/licens
 
 </div>
 </div>
-</div>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13123,7 +13248,7 @@ To view a copy of this license, visit <a href="http://creativecommons.org/licens
 
 </div>
 </div>
-</div>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13135,7 +13260,7 @@ To view a copy of this license, visit <a href="http://creativecommons.org/licens
 
 </div>
 </div>
-</div>
+</div></section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13148,7 +13273,7 @@ To view a copy of this license, visit <a href="http://creativecommons.org/licens
 
 </div>
 </div>
-</div>
+</div></section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13160,7 +13285,7 @@ To view a copy of this license, visit <a href="http://creativecommons.org/licens
 
 </div>
 </div>
-</div>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13169,12 +13294,1989 @@ To view a copy of this license, visit <a href="http://creativecommons.org/licens
 
 </div>
 </div>
-</div>
-    </div>
-  </div>
-</body>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Installation-and-configuration-of-Sardana-system-from-scratch">Installation and configuration of Sardana system from scratch<a class="anchor-link" href="#Installation-and-configuration-of-Sardana-system-from-scratch">&#182;</a></h1><p><br>
+<br>
+<img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+Sardana-Training by ALBA Synchrotron is licensed under the Creative Commons Attribution 4.0 International License.<br>
+To view a copy of this license, visit <a href="http://creativecommons.org/licenses/by/4.0/">http://creativecommons.org/licenses/by/4.0/</a>.</p>
 
- 
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Installation-and-configuration-of-Sardana-system-from-scratch">Installation and configuration of Sardana system from scratch<a class="anchor-link" href="#Installation-and-configuration-of-Sardana-system-from-scratch">&#182;</a></h1><ul>
+<li>How to install Sardana Suite?<ul>
+<li>Sardana and Taurus releases</li>
+<li>Review dependencies</li>
+</ul>
+</li>
+<li>Create the workshop enviroment<ul>
+<li>Create and run Sardana server</li>
+<li>Create profile and run Spock CLI</li>
+<li>Create simulated environment and quick demo</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Releases-and-latest-code">Releases and latest code<a class="anchor-link" href="#Releases-and-latest-code">&#182;</a></h1><h2 id="Official-releases">Official releases<a class="anchor-link" href="#Official-releases">&#182;</a></h2><p>Taurus and Sardana aim to produce at least <strong>2 official releases per year</strong> (in January and July) in PyPI.
+Additional installable files (.wheel, .msi, .deb, etc.) may also be released on GitHub.</p>
+<p>The official releases are also pushed and tagged on the <code>master</code> branch of the official repositories.</p>
+<h2 id="Latest-code">Latest code<a class="anchor-link" href="#Latest-code">&#182;</a></h2><p>The latest code can be found in the <code>develop</code> branch of the repositories.</p>
+<p>For more details and information on how to contribute, see the <code>CONTRIBUTING.md</code> files (<a href="https://github.com/taurus-org/taurus/blob/develop/CONTRIBUTING.md">taurus</a> / <a href="https://github.com/sardana-org/sardana/blob/develop/CONTRIBUTING.md">sardana</a>)</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="How-to-install-Sardana-Suite">How to install Sardana Suite<a class="anchor-link" href="#How-to-install-Sardana-Suite">&#182;</a></h1><h2 id="Taurus"><a href="http://www.taurus-scada.org/users/getting_started.html#installing">Taurus</a><a class="anchor-link" href="#Taurus">&#182;</a></h2><ul>
+<li><a href="https://packages.debian.org/search?keywords=python-taurus">Debian Packages</a>
+<pre><code>apt-get install python-taurus</code></pre>
+</li>
+<li><a href="https://pypi.python.org/pypi/taurus/4.6.1">PyPI and pip</a>
+<pre><code># pip install taurus
+pip3 install taurus</code></pre>
+</li>
+<li>For developers:
+<pre><code>git clone https://github.com/taurus-org/taurus.git
+# pip install -e ./taurus
+pip3 install -e ./taurus</code></pre>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Taurus-dependencies"><a href="http://www.taurus-scada.org/users/getting_started.html#dependencies">Taurus dependencies</a><a class="anchor-link" href="#Taurus-dependencies">&#182;</a></h1><ul>
+<li>python 2.7 | <strong>&gt;=3.5</strong></li>
+<li>numpy &gt;=1.1</li>
+<li>pint</li>
+<li>taurus-epics<ul>
+<li>pyepics</li>
+</ul>
+</li>
+<li>taurus-h5file<ul>
+<li>h5py</li>
+</ul>
+</li>
+<li>taurus-tango<ul>
+<li>PyTango</li>
+</ul>
+</li>
+<li>taurus-pyqtgraph<ul>
+<li>pyqtgraph</li>
+</ul>
+</li>
+<li>taurus-qt<ul>
+<li>pyqt4 | <strong>pyqt5</strong> | pyside1 | pyside2</li>
+<li>lxml</li>
+<li>guiqwt</li>
+<li>ply</li>
+</ul>
+</li>
+<li>taurus-qt-editor<ul>
+<li>spyder &gt;=3</li>
+</ul>
+</li>
+<li>Others:<ul>
+<li>pymca</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="How-to-install-Sardana-Suite">How to install Sardana Suite<a class="anchor-link" href="#How-to-install-Sardana-Suite">&#182;</a></h1><h2 id="Sardana"><a href="http://www.sardana-controls.org/users/getting_started/installing.html#installing">Sardana</a><a class="anchor-link" href="#Sardana">&#182;</a></h2><ul>
+<li><a href="https://packages.debian.org/search?keywords=python-sardana">Debian Packages</a>
+<pre><code>apt-get install python-sardana</code></pre>
+</li>
+<li><a href="https://pypi.python.org/pypi/sardana/2.8.3">PyPI and pip</a>
+<pre><code>pip install sardana</code></pre>
+</li>
+<li>For developers:
+<pre><code>git clone https://github.com/sardana-org/sardana.git
+pip3 install -e ./sardana</code></pre>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Sardana-dependencies"><a href="http://www.sardana-controls.org/users/getting_started/installing.html#dependencies">Sardana dependencies</a><a class="anchor-link" href="#Sardana-dependencies">&#182;</a></h1><ul>
+<li>python 3 (last official release still on python &gt;= 2.6 and &lt; 3)</li>
+<li>lxml</li>
+<li>PyTango &gt;= 9.2.5 (last stable release &gt;= 7.2.6)<ul>
+<li>itango</li>
+</ul>
+</li>
+<li>Taurus &gt;= 4.5.4 (last stable release &gt;= 3.6)</li>
+<li>Others:<ul>
+<li>hkl</li>
+<li>h5py</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Create-the-workshop-enviroment">Create the workshop enviroment<a class="anchor-link" href="#Create-the-workshop-enviroment">&#182;</a></h1>
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Install-Sardana-Suite">Install Sardana Suite<a class="anchor-link" href="#Install-Sardana-Suite">&#182;</a></h1><ul>
+<li>Taurus installation
+<pre><code>pip3 install --user git+https://github.com/taurus-org/taurus.git@icalepcs2019</code></pre>
+</li>
+<li>Sardana installation
+<pre><code>pip3 install --user git+https://github.com/sardana-org/sardana.git@icalepcs2019</code></pre>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Run-and-populate-Sardana">Run and populate Sardana<a class="anchor-link" href="#Run-and-populate-Sardana">&#182;</a></h2><ul>
+<li>The goal:</li>
+</ul>
+<p><img src="res/sardana.png" alt="sardana"></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Instantiate the <strong>Sardana Tango Device Server</strong>:</li>
+</ul>
+
+<pre><code>Sardana demo1 --log-level=debug</code></pre>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="res/sardana_empty.png" alt="sardana_empty"></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Spock">Spock<a class="anchor-link" href="#Spock">&#182;</a></h3><ul>
+<li>CLI based on IPython</li>
+<li>Single point of control - allows to execute macros and control elements</li>
+<li>Allows to work with multiple profiles i.e. connecting to different doors</li>
+</ul>
+<h3 id="Run-spock:">Run spock:<a class="anchor-link" href="#Run-spock:">&#182;</a></h3>
+<pre><code>spock</code></pre>
+<h3 id="Populate-Sardana-from-Spock:">Populate Sardana from Spock:<a class="anchor-link" href="#Populate-Sardana-from-Spock:">&#182;</a></h3>
+<pre><code>sar_demo</code></pre>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Macros-and-quick-demo">Macros and quick demo<a class="anchor-link" href="#Macros-and-quick-demo">&#182;</a></h2><ul>
+<li><p>Sardana macro <a href="http://www.sardana-controls.org/users/standard_macro_catalog.html">catalog</a></p>
+
+<pre><code>lsdef
+lsa</code></pre>
+</li>
+<li><p>motion example:</p>
+
+<pre><code>umv mot01 20</code></pre>
+</li>
+<li><p>acquisition example:</p>
+
+<pre><code>uct 2 ct01</code></pre>
+</li>
+<li><p>scan example:</p>
+
+<pre><code>ascan?
+ascan mot01 0 10 10 0.1</code></pre>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="TAURUS-GUI-CREATION-FROM-SCRATCH">TAURUS GUI CREATION FROM SCRATCH<a class="anchor-link" href="#TAURUS-GUI-CREATION-FROM-SCRATCH">&#182;</a></h1><p><br>
+<br>
+<img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+Sardana-Training by ALBA Synchrotron is licensed under the Creative Commons Attribution 4.0 International License.<br>
+To view a copy of this license, visit <a href="http://creativecommons.org/licenses/by/4.0/">http://creativecommons.org/licenses/by/4.0/</a>.</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Prerequisites">Prerequisites<a class="anchor-link" href="#Prerequisites">&#182;</a></h1><h2 id="Start-TangoTest-device-server">Start <code>TangoTest</code> device server<a class="anchor-link" href="#Start-TangoTest-device-server">&#182;</a></h2><ul>
+<li>open a new konsole and run:
+<pre><code>/usr/lib/tango/TangoTest test</code></pre>
+</li>
+</ul>
+<h2 id="Instantiate-the-Sardana-Tango-Device-Server">Instantiate the Sardana Tango Device Server<a class="anchor-link" href="#Instantiate-the-Sardana-Tango-Device-Server">&#182;</a></h2>
+<pre><code>Sardana demo1</code></pre>
+<h2 id="Run-Spock---Create-Elements">Run Spock - Create Elements<a class="anchor-link" href="#Run-Spock---Create-Elements">&#182;</a></h2><ul>
+<li><p>Run <strong>spock</strong> CLI:</p>
+
+<pre><code>spock</code></pre>
+</li>
+<li><p>Create <strong>Sardana demo elements</strong> (from spock):</p>
+
+<pre><code>sar_demo</code></pre>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="TAURUS-GUI-CREATION">TAURUS GUI CREATION<a class="anchor-link" href="#TAURUS-GUI-CREATION">&#182;</a></h1><h2 id="Create-a-Taurus-GUI-from-scratch-containing-Sardana-elements">Create a Taurus GUI from scratch containing Sardana elements<a class="anchor-link" href="#Create-a-Taurus-GUI-from-scratch-containing-Sardana-elements">&#182;</a></h2>
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="TAURUS-GUI-CREATION-FROM-SCRATCH">TAURUS GUI CREATION FROM SCRATCH<a class="anchor-link" href="#TAURUS-GUI-CREATION-FROM-SCRATCH">&#182;</a></h3><ul>
+<li><p>Create a new GUI with <strong>taurus newgui</strong></p>
+
+<pre><code>taurus newgui</code></pre>
+</li>
+<li><p>Follow the wizard of <strong>taurus newgui</strong></p>
+<ul>
+<li>Choose the project directory (e.g: <code>/home/vagrant/demogui</code>)</li>
+<li>Choose GUI name (e.g: <code>demogui</code>)</li>
+<li>Add synoptic (optional): <code>/sardana-training/users/res/demoBL.jdw</code></li>
+<li>Enable Sardana communication (optional): Sardana <code>demo1</code> </li>
+<li>Generate panels from Sardana Pool (optional): choose <code>yes</code> </li>
+<li>We will skip some steps: custom logo, extra panels, Monitor list</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="TAURUS-GUI-INSTALLATION-AND-LAUNCH">TAURUS GUI INSTALLATION AND LAUNCH<a class="anchor-link" href="#TAURUS-GUI-INSTALLATION-AND-LAUNCH">&#182;</a></h3><ul>
+<li><p>Install the freshly created Taurus GUI:
+<code>`
+pip3 install --user /home/vagrant/demogui</code></p>
+</li>
+<li><p>Congratulations! You can already run your freshly created GUI:</p>
+
+<pre><code>demogui</code></pre>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="TAURUS-GUI-FEATURES">TAURUS GUI FEATURES<a class="anchor-link" href="#TAURUS-GUI-FEATURES">&#182;</a></h1><h2 id="Playing-with-foogui:-Adding-panels,-loading-perspectives,-etc.">Playing with foogui: Adding panels, loading perspectives, etc.<a class="anchor-link" href="#Playing-with-foogui:-Adding-panels,-loading-perspectives,-etc.">&#182;</a></h2>
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="TAURUS-GUI-FEATURES---first-customizations">TAURUS GUI FEATURES - first customizations<a class="anchor-link" href="#TAURUS-GUI-FEATURES---first-customizations">&#182;</a></h3><ul>
+<li>Maximize the GUI and unlock the view': View -&gt; Lock View</li>
+<li>Check the panels that have been automatically created:<ul>
+<li>Manual</li>
+<li>Sardana macros panels (Experiment Config, Macros, Sequences, MacroDescription, DoorOutput, DoorDebug, DoorResult)</li>
+<li>Synoptic (demoBL)</li>
+<li>Sardana Instrument panels (/monitor, /slit, /mirror)</li>
+</ul>
+</li>
+<li>Reorder the panels for "macro execution" work:<ul>
+<li>close (hide) all panels except the macros related panels</li>
+<li>reorder the panels so in a way that is appropriate to launch and monitor macros 
+(e.g. tabbing on together on one side Macros+Sequencer+Expconf and on the other 
+side MacroDescription above and all Door* panels tabbed below)</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="TAURUS-GUI-FEATURES---explore-and-execute-macros">TAURUS GUI FEATURES - explore and execute macros<a class="anchor-link" href="#TAURUS-GUI-FEATURES---explore-and-execute-macros">&#182;</a></h3><ul>
+<li>Go to the <code>ExperimentConfiguration</code> panel, first switch to the "Simple View" (from the context menu) and then enable plotting ct1 and ct2<ul>
+<li>(Use Plot : <code>Spectrum</code>, PlotAxes: <code>&lt;mov&gt;</code> and don't forget to Apply)</li>
+<li>(More features of this widget to be explained in a later session)</li>
+</ul>
+</li>
+<li>Go to the Macros panel<ul>
+<li>select ascan macro (note that the description appears in the MacroDescription Panel)</li>
+<li>fill the parameters (the same as in the scan run in Spock)<ul>
+<li>Note that the existing moveables are offered for the first parameter</li>
+<li>Note that the command is shown in the yellow line</li>
+</ul>
+</li>
+<li>Run the macro ascan<ul>
+<li>Note the led indicating that the door changed to running state</li>
+<li>Note that a Trend Panel appears (it may be hidden in a tab)</li>
+<li>Put it in a visible place and re-run the macro to show the online plot &amp; the door output simultaneously</li>
+<li>Note that the macro was stored in the history and that it can be marked as "favourite"</li>
+<li>Re-run the scan and try to stop, pause and resume it</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Save a perspective called <code>macros</code></li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="TAURUS-GUI-FEATURES---interact-with-instruments-(use-synoptic)">TAURUS GUI FEATURES - interact with instruments (use synoptic)<a class="anchor-link" href="#TAURUS-GUI-FEATURES---interact-with-instruments-(use-synoptic)">&#182;</a></h3><ul>
+<li>Reorder the widgets for "interaction with instruments":<ul>
+<li>Go to Panels -&gt; hide all panels</li>
+<li>Click on the "demoBL" button in the toolbar to show the synoptic panel</li>
+<li>Click on the "mirror" instrument in the synoptic (the area below "DCM"). This should show the "/mirror" panel</li>
+<li>move the "mirror" panel above the synoptic</li>
+<li>Click on the slits in the synoptics (labelled "diagnostics" in the synoptic). 
+This should  show the "/slits" panel. Move it to a tab together with "/mirror"</li>
+<li>Click on the monitor in the synoptics (labelled "FSM4" in the synoptic). 
+This should  show the "/monitor" panel. Move it to a tab together with "/mirror" and "/slits"</li>
+<li>Show the 2-ways communication between panels and synoptics:<ul>
+<li>Click on the active areas of the synoptics and show that the corresponding panels are shown</li>
+<li>Select the panels and see that the synoptic highlights the corresponding area </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Move the gap01 motor in the "/slit" panel</li>
+<li>Save a perspective called <code>instruments</code></li>
+<li>Switch back and forth perspectives <code>macros</code> and <code>instruments</code></li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="TAURUS-GUI-FEATURES---add-and-modify-custom-panels-(I)">TAURUS GUI FEATURES - add and modify custom panels (I)<a class="anchor-link" href="#TAURUS-GUI-FEATURES---add-and-modify-custom-panels-(I)">&#182;</a></h3><ul>
+<li>Open the "/slit" panel. Note that it cannot be modified by the user, because it is auto-created based on sardana config</li>
+<li>Create a friendlier slits panel:<ul>
+<li>Use New Panel button</li>
+<li>Select TaurusForm and use name "myslit" and click "Finish"</li>
+<li>Drag and drop "gap01" and "offset01" from "/slit" to "myslit"</li>
+<li>Hide buttons of "myslit" panel (Uncheck "Show buttons" in the context menu)</li>
+<li>Set compact mode in "myslit" panel (In the context menu)</li>
+<li>Associate the synoptic to the new panel: <ul>
+<li>Go to Tools Menu --&gt; "Manage instrument-panel associations"  -&gt; Associate Instrument <code>/slit</code> with panel <code>myslit</code> --&gt; OK</li>
+</ul>
+</li>
+<li>Close (hide) the "/slits" panel and place the "myslit" panel in its place</li>
+<li>check that now the synoptic is 2-way associated with the myslit panel</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="TAURUS-GUI-FEATURES---add-and-modify-custom-panels-(II)">TAURUS GUI FEATURES - add and modify custom panels (II)<a class="anchor-link" href="#TAURUS-GUI-FEATURES---add-and-modify-custom-panels-(II)">&#182;</a></h3><ul>
+<li>Hide all panels</li>
+<li>Create a Tango DB tree panel:<ul>
+<li>Use New Panel button<ul>
+<li>Select TaurusDBTreeWidget and use name <code>db</code></li>
+<li>Click on "Advanced Settings" and set <code>tango://buster.localdomain:10000</code> as model</li>
+<li>Click on finish</li>
+</ul>
+</li>
+<li>place the "db" panel somewhere</li>
+</ul>
+</li>
+<li>Create a Plot panel:<ul>
+<li>Use New Panel button<ul>
+<li>Select TaurusPlot and use name <code>plot</code></li>
+<li>Click on finish</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Create a Form panel:<ul>
+<li>Use New Panel button<ul>
+<li>Select TaurusForm and use name <code>form</code></li>
+<li>Click on finish</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Make sure that the "db" and "form" and "plot" panels are all <strong>simultaneously</strong> visible</li>
+<li>Add a new element to the "form" form panel:<ul>
+<li>Navigate in the db panel to <code>sys/tg_test/1/ampli</code>, and drag and drop it into "form". </li>
+<li>Navigate in the db panel to <code>sys/tg_test/1/boolean_scalar</code>, and drag and drop it into "form"</li>
+<li>Navigate in the db panel to <code>sys/tg_test/1/wave</code>, and drag and drop it into "form"</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="TAURUS-GUI-FEATURES---add-and-modify-custom-panels-(III)">TAURUS GUI FEATURES - add and modify custom panels (III)<a class="anchor-link" href="#TAURUS-GUI-FEATURES---add-and-modify-custom-panels-(III)">&#182;</a></h3><ul>
+<li>Further customize "form"<ul>
+<li>self drag&amp;drop ampli to create a duplicated display of "ampli"</li>
+<li>right-click label of "ampli" -&gt; Change write Widget -&gt; TaurusWheelEdit </li>
+<li>right click label of "ampli" and select Change label to "voltage"
+Note that this is a change at the <strong>widget</strong> level</li>
+<li>right-click label of "voltage" and select "Configurations-&gt;All" and set unit to "millivolts" and exit config dialog. 
+Note that this is a change at the <strong>Tango Attribute</strong> level!</li>
+<li>Note the units support: <ul>
+<li>both "ampli" and "voltage" now display "mV"</li>
+<li>if you use the line edit of "voltage" to write <code>1V</code>, the value will change to 1000 mV in both "ampli" and "voltage"</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Save a perspective called <code>tango</code> and exit (save all newly created panels as permanent)</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Macros:-scans,-data-acquisition-and-storage">Macros: scans, data acquisition and storage<a class="anchor-link" href="#Macros:-scans,-data-acquisition-and-storage">&#182;</a></h1><p><br>
+<br>
+<img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+Sardana-Training by ALBA Synchrotron is licensed under the Creative Commons Attribution 4.0 International License.<br>
+To view a copy of this license, visit <a href="http://creativecommons.org/licenses/by/4.0/">http://creativecommons.org/licenses/by/4.0/</a>.</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Contents">Contents<a class="anchor-link" href="#Contents">&#182;</a></h2><ul>
+<li>MacroServer overview</li>
+<li>MeasurementGroup overview</li>
+<li>Generic Scan Framework</li>
+<li>Recorders</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="MacroServer-overview"><a href="http://www.sardana-controls.org/devel/overview/overview_macroserver.html">MacroServer overview</a><a class="anchor-link" href="#MacroServer-overview">&#182;</a></h2><ul>
+<li>Is a controlled environment to run procedures, called macros, sequentially or simultaneously (using multiple entry-points called <em>Doors</em>)</li>
+<li>Provides a standard <a href="http://www.sardana-controls.org/users/standard_macro_catalog.html">catalogue</a> of procedures.</li>
+<li>Macros syntax is inspired on the SPEC control system syntax</li>
+<li>Allows to plug in new/custom procedures written as Python functions or classes</li>
+<li>Connects to device Pool(s) and allows to act on their elements from within macros</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="MeasurementGroup-overview"><a href="http://www.sardana-controls.org/devel/overview/overview_measurementgroup.html">MeasurementGroup overview</a><a class="anchor-link" href="#MeasurementGroup-overview">&#182;</a></h2><ul>
+<li>MeasurementGroup is a high level element whose role is:<ul>
+<li>to coordinate a complex measurement process</li>
+<li>provide a simplified interface to it</li>
+</ul>
+</li>
+<li>Run <code>uct</code> macro</li>
+<li>Open <code>expconf</code> in Spock</li>
+<li>Disable some channels and run <code>ct</code> macro</li>
+<li>Briefly review other configuration parameters</li>
+<li>Add 1D channel <code>oned01</code>, apply changes and run <code>ct</code> macro</li>
+<li>Create new measurement group in spock: <code>defmeas mntgrp02 ct01 twod01</code> and run <code>ct</code> macro</li>
+<li>Change active measurement group in expconf and run <code>ct</code> macro  </li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Generic-Scan-Framework-(GSF)">Generic Scan Framework (GSF)<a class="anchor-link" href="#Generic-Scan-Framework-(GSF)">&#182;</a></h2><ul>
+<li>Scanning modes: step, continuous and time</li>
+<li>Provides the catalogue of turn-key scan macros e.g., <code>ascan</code>, <code>dscan</code>, <code>a2scanc</code>, <code>ascanct</code>, <code>mesh</code>, <code>timescan</code>, etc.</li>
+<li>Provides the base classes for developing custom scans e.g., <code>GScan</code>, <code>SScan</code>, <code>CScan</code>, etc.</li>
+<li>Custom scans are developed by instantiating the base class and developing a custom generator</li>
+<li>Scans are highly configurable with the <a href="http://www.sardana-controls.org/users/scan.html#configuration">environment variables</a> e.g. <code>ActiveMntGrp</code>, <code>ScanFile</code>, <code>ApplyInterpolation</code></li>
+<li>Scans macros <a href="http://www.sardana-controls.org/devel/howto_macros/scan_framework.html#hooks-support-in-scans">support hooks</a> e.g. <code>pre-scan</code>, <code>post-acq</code></li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Generic-Scan-Framework---demo">Generic Scan Framework - demo<a class="anchor-link" href="#Generic-Scan-Framework---demo">&#182;</a></h2><ul>
+<li>Precise software synchronized continuous scans require intensive monitoring loops. Increase the frequency of position checks (in spock) and restart the Sardana server:
+<pre><code>Pool_demo_1.put_property({"MotionLoop_StatesPerPosition":"1"})</code></pre>
+</li>
+<li>Start taurustrend with high frequency of polling (in bash):<code>taurus tpg trend mot01/position "eval:int(bool({ct01/state}))"</code><ul>
+<li>Configure <em>Forced read</em> period of 10 ms </li>
+<li>Configure fill area of the state curve and move it to y2 axis in <em>Plot configuration</em></li>
+</ul>
+</li>
+<li>Configure long acceleration and deceleration times (in spock): <code>mot01.acceleration = 2</code> and <code>mot01.deceleration = 2</code></li>
+<li>Demonstrate step scan (in spock): <code>ascan mot01 0 10 10 1</code></li>
+<li>Demonstrate continuous scan with no latency time (in spock): <code>ascanct mot01 0 10 10 1</code></li>
+<li>Demonstrate continuous scan with 100 ms latency time (in spock): <code>ascanct mot01 0 10 10 1 0.1</code></li>
+<li>Configure hardware synchronization in expconf.</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Recorders"><a href="http://www.sardana-controls.org/devel/howto_recorders.html#writing-recorders">Recorders</a><a class="anchor-link" href="#Recorders">&#182;</a></h2><p><img src="res/recorders.png" alt="Sardana data flow"></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Recorders---demo">Recorders - demo<a class="anchor-link" href="#Recorders---demo">&#182;</a></h2><h3 id="Demonstrate-recorder-selection-based-on-the-file-extension">Demonstrate recorder selection based on the file extension<a class="anchor-link" href="#Demonstrate-recorder-selection-based-on-the-file-extension">&#182;</a></h3><ul>
+<li>In spock start <code>expconf</code></li>
+<li>Set scan file to <code>test.h5</code> and directory to <code>/tmp</code> (equivalent in Spock with <code>senv ScanFile test.h5</code> and <code>senv ScanDir /tmp</code>)</li>
+<li>Execute a scan: <code>ascan mot01 0 2 2 0.1</code></li>
+<li>Access to the data with <code>silx</code></li>
+<li>Close the <code>silx</code></li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="How-to-write-macros">How to write macros<a class="anchor-link" href="#How-to-write-macros">&#182;</a></h1><p><br>
+<br>
+<img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+Sardana-Training by ALBA Synchrotron is licensed under the Creative Commons Attribution 4.0 International License.<br>
+To view a copy of this license, visit <a href="http://creativecommons.org/licenses/by/4.0/">http://creativecommons.org/licenses/by/4.0/</a>.</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Macro-function-vs.-macro-class">Macro function vs. macro class<a class="anchor-link" href="#Macro-function-vs.-macro-class">&#182;</a></h1><h2 id="Function">Function<a class="anchor-link" href="#Function">&#182;</a></h2><ul>
+<li>For programmers with background on a functional language (e.g. Fortran, Matlab, SPEC)</li>
+<li>Sequencial procedures to run an experiment</li>
+</ul>
+<h2 id="Class">Class<a class="anchor-link" href="#Class">&#182;</a></h2><ul>
+<li>For proammers with background on object-oriented languages (e.g. Java, C++, C#)</li>
+<li>Overriding an existing macros (e.g. inherit from <code>mv</code> macro and extend its funcionality)</li>
+<li>Some advanced features require use of classes e.g. define hook places or mandatory environment variables</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Macro-plugins-discovery">Macro plugins discovery<a class="anchor-link" href="#Macro-plugins-discovery">&#182;</a></h1><ul>
+<li>Sardana built-in macros are importable from <code>sardana.macroserver.macros</code></li>
+<li>The plugin discovery system is based on directory scanning and python module inspection</li>
+<li>Custom macros should be installed in one of the <code>MacroPath</code> directories:<ul>
+<li>Create <code>macros</code> directory: <code>mkdir /home/vagrant/macros</code></li>
+<li>In spock: <code>_MACRO_SERVER.put_property({"MacroPath":["/home/vagrant/macros", "/home/vagrant/.local/lib/python3.7/site-packages/sardana/macroserver/macros/examples"]})</code></li>
+<li>Restart the Sardana server</li>
+</ul>
+</li>
+<li>The path order is important! Macros in the higher position paths will take precedence over the lower position paths.</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Macro-development-tools">Macro development tools<a class="anchor-link" href="#Macro-development-tools">&#182;</a></h1><ul>
+<li><code>edmac &lt;macro_name&gt; [&lt;module_name&gt;]</code></li>
+<li><code>relmac</code>, <code>relmaclib</code>, <code>addmaclib</code>, <code>rellib</code></li>
+<li><code>www</code>, <code>post_mortem</code></li>
+<li><code>debug on|off</code></li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Hello-world">Hello world<a class="anchor-link" href="#Hello-world">&#182;</a></h1><ul>
+<li>In spock type: <code>edmac hello_world mymacros</code></li>
+<li>Implement a function decorated with <code>macro</code> decorator that can be found in <code>sardana.macroserver.macro</code></li>
+<li>Use <code>self.output()</code> to print something...</li>
+<li>Exit from editor and apply changes on the server [y]</li>
+<li>Run <code>hello_world</code> macro</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="kn">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">macro</span><span class="p">,</span> <span class="n">Type</span>
+
+<span class="nd">@macro</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">hello_world</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Macro hello_world&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;Running hello_world...&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="MACRO-FEATURES">MACRO FEATURES<a class="anchor-link" href="#MACRO-FEATURES">&#182;</a></h1>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Logging-in-macros">Logging in macros<a class="anchor-link" href="#Logging-in-macros">&#182;</a></h3><ul>
+<li>Macros may log messages to various destinations<ul>
+<li>Spock or other clients</li>
+<li>Macro logging/reporting feature</li>
+<li>MacroServer log files</li>
+</ul>
+</li>
+<li>Different log levels are possible e.g. output, error, debug</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Logging-in-macros---demo">Logging in macros - demo<a class="anchor-link" href="#Logging-in-macros---demo">&#182;</a></h3><ul>
+<li>Edit <code>move</code> macro and instead of <code>self.output</code> use <code>self.info</code></li>
+<li><code>wa</code> (table view)</li>
+<li><code>umv mot01 10</code> (update block view)</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Macro-parameters">Macro parameters<a class="anchor-link" href="#Macro-parameters">&#182;</a></h3><ul>
+<li>Benefits<ul>
+<li>The parameters validation prevents runtime errors</li>
+<li>Spock offers autocompletion facilities</li>
+<li>Autogenerated documentation</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Macro-parameters">Macro parameters<a class="anchor-link" href="#Macro-parameters">&#182;</a></h3><ul>
+<li>Parameters are defined either as arguments of the <code>macro</code> decorator for the macro function or as <code>param_def</code> class member for the macro class</li>
+<li>A parameter is characterized by: name, type, default value and description</li>
+<li>Parameter values arrives as positional arguments to the macro function or to the run method of the macro class</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Macro-parameters---development">Macro parameters - development<a class="anchor-link" href="#Macro-parameters---development">&#182;</a></h3><ul>
+<li>Open <code>/home/vagrant/mymacros.py</code> module with an external editor</li>
+<li>Develop a new macro: <code>move</code></li>
+<li>Add two macro parameters according to the <a href="https://sardana-controls.org/devel/howto_macros/macros_general.html#adding-parameters-to-your-macro">Adding macro parameters documentation</a><ul>
+<li>moveable of type <code>Moveable</code></li>
+<li>position (to move) of type <code>Float</code></li>
+</ul>
+</li>
+<li>Move the motor to the position according to the <a href="https://sardana-controls.org/devel/api/sardana/taurus/core/tango/sardana/pool.html">Moveable API</a> (<code>moveable.move(position)</code>)</li>
+<li>Apply the new code on the server using the <code>relmaclib mymacros</code> macro (in Spock)</li>
+<li>Continue developing your macro to print the motor position (<code>moveable.getPosition()</code>)</li>
+<li>Apply the new code on the server using the <code>relmaclib mymacros</code> macro (in Spock)</li>
+<li>Run <code>move mot01 10</code></li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="kn">import</span> <span class="n">macro</span><span class="p">,</span> <span class="n">Type</span>
+
+<span class="nd">@macro</span><span class="p">([[</span><span class="s2">&quot;moveable&quot;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Moveable</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="s2">&quot;moveable to move&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;position&quot;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="s2">&quot;absolute position&quot;</span><span class="p">]])</span>
+<span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">moveable</span><span class="p">,</span> <span class="n">position</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This macro moves a moveable to the specified position&quot;&quot;&quot;</span>
+    <span class="n">moveable</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">position</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;{} is now at {}&quot;</span><span class="p">,</span> <span class="n">moveable</span><span class="o">.</span><span class="n">getName</span><span class="p">(),</span> <span class="n">moveable</span><span class="o">.</span><span class="n">getPosition</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-1-2ec178697a3b&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-green-fg">from</span> sardana<span class="ansi-blue-fg">.</span>macroserver<span class="ansi-blue-fg">.</span>macro <span class="ansi-green-fg">import</span> macro<span class="ansi-blue-fg">,</span> Type
+<span class="ansi-green-intense-fg ansi-bold">      2</span> 
+<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg"> @macro([ [&#34;moveable&#34;, Type.Moveable, None, &#34;moveable to move&#34;],
+</span><span class="ansi-green-intense-fg ansi-bold">      4</span>          [&#34;position&#34;, Type.Float, None, &#34;absolute position&#34;] ])
+<span class="ansi-green-intense-fg ansi-bold">      5</span> <span class="ansi-green-fg">def</span> move<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> moveable<span class="ansi-blue-fg">,</span> position<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-red-fg">AttributeError</span>: &#39;TypeNames&#39; object has no attribute &#39;Moveable&#39;</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Macro-parameters---repeat-parameters">Macro parameters - repeat parameters<a class="anchor-link" href="#Macro-parameters---repeat-parameters">&#182;</a></h3><ul>
+<li>Allows to pass as parameter value a list of repetitions of the repeat parameter member(s)</li>
+<li>Repeat parameters allow to:<ul>
+<li>restrict the minimum and/or maximum number of repetitions</li>
+<li>nest repeat parameters inside of another repeat parameters</li>
+<li>define multiple repeat parameters in the same macro</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Macro-parameters---repeat-parameters---demo">Macro parameters - repeat parameters - demo<a class="anchor-link" href="#Macro-parameters---repeat-parameters---demo">&#182;</a></h3><ul>
+<li><code>prdef pt4</code></li>
+<li><code>prdef pt5</code></li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Macro-results">Macro results<a class="anchor-link" href="#Macro-results">&#182;</a></h3><ul>
+<li>Allows to pass the macro result to the clients (string representation) and to the wrapper macro</li>
+<li>Results are defined as the <code>result_def</code> class member of the macro class</li>
+<li>A result is characterized by: name, type, default value and description - exactly the same as macro parameter</li>
+<li>Multiple results are possible</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Macro-results---demo">Macro results - demo<a class="anchor-link" href="#Macro-results---demo">&#182;</a></h3><ul>
+<li><code>prdef twice</code></li>
+<li><code>twice 2</code></li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Macro-data">Macro data<a class="anchor-link" href="#Macro-data">&#182;</a></h3><ul>
+<li>Allows to pass the macro data to the clients (serialized with <code>pickle</code>) and to the wrapper macro</li>
+<li>Data format is totally opened</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Macro-data---demo">Macro data - demo<a class="anchor-link" href="#Macro-data---demo">&#182;</a></h3><ul>
+<li>Execute macro twice: <code>twice 3</code></li>
+<li>Access macro data in Spock with: <code>macrodata</code></li>
+<li>Execute scan: <code>ascan mot01 0 10 2 0.1</code></li>
+<li>Access macro data with in Spock with: <code>macrodata</code></li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Sequencing-and-nesting-macros">Sequencing and nesting macros<a class="anchor-link" href="#Sequencing-and-nesting-macros">&#182;</a></h3><ul>
+<li>Programmatically<ul>
+<li>Macros can call other macros, and these other macros can call another macros, and so on...</li>
+<li>The easiest way to program execution of a macro from wihin another macro is to use the macro context: <code>edmac hello_world</code> and add <code>self.lsm()</code></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Sequencing-and-nesting-macros">Sequencing and nesting macros<a class="anchor-link" href="#Sequencing-and-nesting-macros">&#182;</a></h3><ul>
+<li>Graphically using <em>sequencer</em>:<ul>
+<li>Open <code>demogui</code> and show <code>Sequencer</code> panel</li>
+<li>Add macros to the sequence e.g. <code>lsm</code>, <code>ct</code> and <code>ascan</code> and fill their parameters</li>
+<li>Start the sequence execution, stop it, pause it, etc..</li>
+<li>Save the sequence to a file and open it back</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Hooks">Hooks<a class="anchor-link" href="#Hooks">&#182;</a></h3><ul>
+<li>Python code that will be executed at given points of the macro</li>
+<li>Can be a Python callable or a macro</li>
+<li>Hooks can be attached to the hook places that defines macros</li>
+<li>Macro must inherit from <code>Hookable</code> class to allow hook places</li>
+<li>Hook places are defined and handled by the macro in the code</li>
+<li>Exists three possibilities to attach hooks to the macros:<ul>
+<li>configuring general hooks - using the <code>lsgh</code>, <code>defgh</code>, <code>udefgh</code>.</li>
+<li>programatically - using the <code>Hookable</code> class API (it requires defining a wrapper macro)</li>
+<li>graphically - using the <code>sequencer</code> widget</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Hooks---demo">Hooks - demo<a class="anchor-link" href="#Hooks---demo">&#182;</a></h3><ul>
+<li><code>prdef loop</code></li>
+<li><code>prdef captain_hook</code></li>
+<li><code>captain_hook 0 10 1</code></li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="General-Hooks---demo">General Hooks - demo<a class="anchor-link" href="#General-Hooks---demo">&#182;</a></h3><ul>
+<li><code>lsgh</code></li>
+<li><code>defgh wa pre-acq</code></li>
+<li><code>ct</code></li>
+<li><code>udefgh wa</code></li>
+<li><code>ct</code></li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Interactive-macros">Interactive macros<a class="anchor-link" href="#Interactive-macros">&#182;</a></h3><ul>
+<li>Macros can ask for user input</li>
+<li>Macro must be declared as interactive e.g. <code>imacro</code> decorator or <code>interactive</code> class member set to <code>True</code></li>
+<li>The user input request may be characterized with: type, default value, title, unit, label, range, ...</li>
+<li>Spock may handle user input request either in the CLI or GUI mode - see <code>SPOCK_INPUT_HANDLER</code> in the <code>sardana.sardanacustomsettings</code></li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Interactive-macros---demo">Interactive macros - demo<a class="anchor-link" href="#Interactive-macros---demo">&#182;</a></h3><ul>
+<li><code>prdef ask_number_of_points</code></li>
+<li><code>ask_number_of_points</code></li>
+<li><code>prdef ask_for_moveable</code></li>
+<li><code>ask_for_moveable</code></li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Ploting-in-macros">Ploting in macros<a class="anchor-link" href="#Ploting-in-macros">&#182;</a></h3><ul>
+<li>Macro send request to plot to the client e.g. spock</li>
+<li>Uses <code>matplotlib.pyplot</code> framework API e.g. <code>pyplot.plot</code></li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Ploting-in-macros---demo">Ploting in macros - demo<a class="anchor-link" href="#Ploting-in-macros---demo">&#182;</a></h3><ul>
+<li><code>prdef random_image</code></li>
+<li><code>random_image</code></li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Interrupting-macro-execution">Interrupting macro execution<a class="anchor-link" href="#Interrupting-macro-execution">&#182;</a></h3><ul>
+<li>Macros  can be stopped, aborted or paused</li>
+<li>As soon as the user requested the macro interruption the macro will get interrupted on the next call of <code>checkPoint</code> (or <code>pausePoint</code>) or any of the macro API method (Macro class methods decorated with <code>mAPI</code>)</li>
+<li>Long sleeps should be interleaved with check points</li>
+<li>Macro may define <code>on_stop</code>, <code>on_abort</code> and <code>on_pause</code> method that will be called on the corresponding interruption</li>
+<li>Macro reserved object, for example requested with the <code>getMotion</code> method (<code>getMotor</code> will not reserve the motor object!), are stopped/aborted on the corresponding interruption (before calling the <code>on_stop</code>/<code>on_abort</code> method)</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Reporting-macro-progress">Reporting macro progress<a class="anchor-link" href="#Reporting-macro-progress">&#182;</a></h3><ul>
+<li>Macros may report their progress while are executed</li>
+<li>The progress is usually expressed in percentage 0 - 100 %</li>
+<li>The progress update is done using the <code>yield</code> statement within the <code>run</code> method</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Macro-environment">Macro environment<a class="anchor-link" href="#Macro-environment">&#182;</a></h3><ul>
+<li>Key-value store accessible from macros and clients</li>
+<li>Stored persistently</li>
+<li>API: <code>getEnv</code> and <code>setEnv</code> or simply <code>senv</code> macro</li>
+<li>Different levels: Global, Door, Macro</li>
+<li>Example:<ul>
+<li><code>senv ActiveMntGrp mntgrp01</code></li>
+<li><code>ct</code></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="MACROBUTTON">MACROBUTTON<a class="anchor-link" href="#MACROBUTTON">&#182;</a></h1><h2 id="A-GUI-button-to-execute-a-single-macro">A GUI button to execute a single macro<a class="anchor-link" href="#A-GUI-button-to-execute-a-single-macro">&#182;</a></h2>
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="MACROBUTTON:-A-GUI-button-to-execute-a-single-macro">MACROBUTTON: A GUI button to execute a single macro<a class="anchor-link" href="#MACROBUTTON:-A-GUI-button-to-execute-a-single-macro">&#182;</a></h3><ul>
+<li><strong>macrobutton</strong> is a Widget button allowing execution of a single macro</li>
+<li>It can be integraged in Qt GUIs</li>
+<li>It allows: <ul>
+<li>Running macro: by clicking once </li>
+<li>Interrupting a macro: by clicking again<ul>
+<li>It is possible to abort the macro</li>
+<li>It is possible to continue with the execution</li>
+</ul>
+</li>
+<li>To see the macro progress</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="MACROBUTTON:-A-GUI-button-to-execute-a-single-macro--&gt;-DEMO">MACROBUTTON: A GUI button to execute a single macro -&gt; DEMO<a class="anchor-link" href="#MACROBUTTON:-A-GUI-button-to-execute-a-single-macro--&gt;-DEMO">&#182;</a></h3><p><strong>Demo</strong> of a macrobutton executed on the container:</p>
+<p>Run spock to see the results:</p>
+
+<pre><code>spock --profile demo1</code></pre>
+<p>Execute the <strong>macrobutton</strong> code, which in this case <strong>executes the 'lsm' macro</strong>, and see the <strong>output of the executed macro in spock</strong>.</p>
+<ul>
+<li><p>macrobutton executing an lsm macro:</p>
+
+<pre><code>python3 ~/sardana-training/res/macrobutton/macrobutton_lsm.py</code></pre>
+</li>
+<li><p>macrobutton executing an ascan macro:</p>
+
+<pre><code>python3 ~/sardana-training/res/macrobutton/macrobutton_scan.py</code></pre>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="MACROBUTTON:-BL13-Xaloc-ALBA-Beamline-Use-Case">MACROBUTTON: BL13-Xaloc ALBA Beamline Use Case<a class="anchor-link" href="#MACROBUTTON:-BL13-Xaloc-ALBA-Beamline-Use-Case">&#182;</a></h3><p>BL13-Xaloc Beamline uses Macrobuttons in a TaurusGUI for focusing the sample image and for looking for the best diffraction position on the sample</p>
+<p><img src="res/OAV_raster.jpg" alt="BL13-Xaloc GUI with Macrobuttons"></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Motion-controllers">Motion controllers<a class="anchor-link" href="#Motion-controllers">&#182;</a></h1><p><br>
+<br>
+<img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+Sardana-Training by ALBA Synchrotron is licensed under the Creative Commons Attribution 4.0 International License.<br>
+To view a copy of this license, visit <a href="http://creativecommons.org/licenses/by/4.0/">http://creativecommons.org/licenses/by/4.0/</a>.</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Contents">Contents<a class="anchor-link" href="#Contents">&#182;</a></h2><ul>
+<li>Writing controller - general</li>
+<li>Writing motor controller - Blender blades</li>
+<li>Pseudomotor basics - Slit controller</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Before-writing-a-new-controller">Before writing a new controller<a class="anchor-link" href="#Before-writing-a-new-controller">&#182;</a></h3><ul>
+<li>Before writing a new controller check in the <a href="https://github.com/sardana-org/sardana-plugins">catalogue</a> if someone already wrote a similar one</li>
+<li>If not, it does not harm to ask on one of the communication channels e.g. mailing list, github issue, etc.</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Controller-plugins-discovery">Controller plugins discovery<a class="anchor-link" href="#Controller-plugins-discovery">&#182;</a></h3><ul>
+<li>Sardana built-in controllers are importable from <code>sardana.pool.poolcontrollers</code></li>
+<li>The plugin discovery system is based on directory scanning and python module inspection</li>
+<li>Custom controllers should be installed in one of the <code>PoolPath</code> directories:<ul>
+<li>Create /controllers directory: <code>mkdir ~/controllers</code></li>
+<li>In spock: <code>Pool_demo1_1.put_property({"PoolPath":["/home/vagrant/controllers"]})</code></li>
+<li>Restart the Sardana server</li>
+</ul>
+</li>
+<li>The path order is important! Controllers in the higher position paths will take precedence over the lower position paths.</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Blender-Blades-Motor-Controller">Blender Blades Motor Controller<a class="anchor-link" href="#Blender-Blades-Motor-Controller">&#182;</a></h3><ul>
+<li>Open the code: <code>kwrite sardana-training/controllers/templates/BlenderBladesMotorCtrl.py</code></li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Blender-Blades-Motor-Controller">Blender Blades Motor Controller<a class="anchor-link" href="#Blender-Blades-Motor-Controller">&#182;</a></h3><ul>
+<li>Install Blender Slits system: <code>pip3 install --user /home/vagrant/sardana-training/blender-slits</code></li>
+<li>Start hardware: <code>blender-slits-server</code></li>
+<li>Blender Blades system (NOT PART OF SARDANA): <ul>
+<li>Communication protocol is explained in: <code>sardana-training/blender-slits/README.md</code></li>
+<li>Directions are in the hardware coordinate system</li>
+<li>Positions are not calibrated in the local coordinate system - beam axis is not the zero!</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Writing-constructor"><a href="http://www.sardana-controls.org/devel/howto_controllers/howto_controller.html#constructor">Writing constructor</a><a class="anchor-link" href="#Writing-constructor">&#182;</a></h3><ul>
+<li>Constructor<ul>
+<li>Called on: controllers creation, pool startup and controller's code reload</li>
+<li>Accepts arguments: instance (name of the controller instance) and properties (dictionary with the controller properties)</li>
+<li>If an exception is raised when constructing the controller, the controller automatically gets into the Fault state and its status describes the exception that occured</li>
+</ul>
+</li>
+<li>Instantiate <code>BlenderBlades</code> in the constructor</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Instantiate-controller">Instantiate controller<a class="anchor-link" href="#Instantiate-controller">&#182;</a></h3><ul>
+<li>Deploy controller: <code>ln -s ~/sardana-training/controllers/templates/BlenderBladesMotorCtrl.py ~/controllers</code></li>
+<li>Load it in the system - in spock: <code>addctrllib BlenderBladesMotorCtrl</code></li>
+<li>Check if the controller library was corectly loaded: <code>lsctrllib</code></li>
+<li>Create an instance of the controller: <code>defctrl BlenderBladesMotorController bleblactrl</code></li>
+<li>Ask for controllers state: <code>bleblactrl.state()</code></li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Implement-StateOne"><a href="http://www.sardana-controls.org/devel/howto_controllers/howto_motorcontroller.html#get-motor-state">Implement StateOne</a><a class="anchor-link" href="#Implement-StateOne">&#182;</a></h3><ul>
+<li>Get axis state (State sequence)<ul>
+<li>Applies only to the to physical elements</li>
+<li>Called on: state request, during operations e.g. motion, acquisition</li>
+<li>Returns: state and optionally status, if no status is returned, it will be composed by Sardana from the state (in case of motor also returns limit switches)</li>
+<li>If an exception is raised when reading the state, the axis automatically gets into the Fault state and the status contains the exception details.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Implement-StateOne"><a href="http://www.sardana-controls.org/devel/howto_controllers/howto_motorcontroller.html#get-motor-state">Implement StateOne</a><a class="anchor-link" href="#Implement-StateOne">&#182;</a></h3><ul>
+<li>Implement AXIS_NAMES class member for quick lookup to motor identifiers</li>
+<li>Implement AXIS_ID and VALUE class members for refering to the corresponing part of the answer</li>
+<li>Implement method by quering <code>?state &lt;axis id&gt;</code></li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Implement-ReadOne"><a href="http://www.sardana-controls.org/devel/howto_controllers/howto_motorcontroller.html#get-motor-position">Implement ReadOne</a><a class="anchor-link" href="#Implement-ReadOne">&#182;</a></h3><ul>
+<li>Implement method by quering <code>?pos &lt;axis id&gt;</code></li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Instantiate-top-motor">Instantiate top motor<a class="anchor-link" href="#Instantiate-top-motor">&#182;</a></h3><ul>
+<li>Reload controller code: <code>relctrlcls BlenderBladesMotorController</code> </li>
+<li>Create motor instance: <code>defelem top bleblactrl 1</code></li>
+<li>Ask for motor state: <code>top.state()</code></li>
+<li>Ask for motor position: <code>top.position</code> or <code>wm top</code></li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Implement-StartOne"><a href="http://www.sardana-controls.org/devel/howto_controllers/howto_motorcontroller.html#move-a-motor">Implement StartOne</a><a class="anchor-link" href="#Implement-StartOne">&#182;</a></h3><ul>
+<li>Implement method by commanding <code>&lt;axis id&gt; &lt;pos&gt;</code></li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Move-top-motor">Move top motor<a class="anchor-link" href="#Move-top-motor">&#182;</a></h3><ul>
+<li>Reload controller code: <code>relctrlcls BlenderBladesMotorController</code> </li>
+<li>Ask motor to move: <code>umvr top 10</code></li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Implement-AbortOne"><a href="http://www.sardana-controls.org/devel/howto_controllers/howto_motorcontroller.html#abort-a-motor">Implement AbortOne</a><a class="anchor-link" href="#Implement-AbortOne">&#182;</a></h3><ul>
+<li>Implement method by commanding <code>abort</code></li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Move-and-abort-top-motor">Move and abort top motor<a class="anchor-link" href="#Move-and-abort-top-motor">&#182;</a></h3><ul>
+<li>Reload controller code: <code>relctrlcls BlenderBladesMotorController</code> </li>
+<li>Ask motor to move: <code>umvr top 50</code></li>
+<li>Issue <code>Ctrl+C</code> in spock</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Implement-standard-axis-attributes"><a href="http://www.sardana-controls.org/devel/howto_controllers/howto_motorcontroller.html#standard-axis-attributes">Implement standard axis attributes</a><a class="anchor-link" href="#Implement-standard-axis-attributes">&#182;</a></h3><ul>
+<li>Implement <code>GetAxisPar</code> method<ul>
+<li>Implement velocity by querying <code>?vel &lt;axis id&gt;</code></li>
+<li>Implement acceleration by querying <code>?acc &lt;axis id&gt;</code></li>
+<li>Implement deceleration by querying <code>?dec &lt;axis id&gt;</code></li>
+<li>Hardcode base_rate to 0</li>
+<li>Hardcode steps_per_unit to 1</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Read-standard-axis-attributes">Read standard axis attributes<a class="anchor-link" href="#Read-standard-axis-attributes">&#182;</a></h3><ul>
+<li><code>top.velocity</code></li>
+<li><code>top.acceleration</code></li>
+<li><code>top.deceleration</code></li>
+<li><code>top.base_rate</code></li>
+<li><code>top.state_per_unit</code></li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Implement-standard-axis-attributes"><a href="http://www.sardana-controls.org/devel/howto_controllers/howto_motorcontroller.html#standard-axis-attributes">Implement standard axis attributes</a><a class="anchor-link" href="#Implement-standard-axis-attributes">&#182;</a></h3><ul>
+<li>Implement <code>SetAxisPar</code> method<ul>
+<li>Implement velocity by commanding <code>vel &lt;axis id&gt; &lt;value&gt;</code></li>
+<li>Implement acceleration by commanding <code>acc &lt;axis id&gt; &lt;value&gt;</code></li>
+<li>Implement deceleration by commanding <code>dec &lt;axis id&gt; &lt;value&gt;</code></li>
+<li>Raise exception when base_rate is set</li>
+<li>Raise exception when steps_per_unit is set</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Write-standard-axis-attributes">Write standard axis attributes<a class="anchor-link" href="#Write-standard-axis-attributes">&#182;</a></h3><ul>
+<li><code>top.velocity = 10</code></li>
+<li><code>top.acceleration = 0.1</code></li>
+<li><code>top.deceleration = 0.1</code></li>
+<li><code>top.base_rate = 5</code> -&gt; exception!</li>
+<li><code>top.state_per_unit = 100</code> -&gt; exception!</li>
+<li>Make some moves...</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Align-slits">Align slits<a class="anchor-link" href="#Align-slits">&#182;</a></h3><ul>
+<li>Define the rest of the motors:<ul>
+<li><code>defm bottom bleblactrl 2</code></li>
+<li><code>defm left bleblactrl 3</code></li>
+<li><code>defm right bleblactrl 4</code></li>
+</ul>
+</li>
+<li>Ask for motor positions: <code>wm top bottom left right</code></li>
+<li>Determine direction with relative move and adjust sign:<ul>
+<li><code>bottom.sign = -1</code></li>
+<li><code>left.sign = -1</code></li>
+</ul>
+</li>
+<li>Change offset by using the <code>set_user_pos</code> macro e.g. <code>set_user_pos top 0</code></li>
+<li>Open and close gap by moving physical motors: <code>mv top 5 bottom 5 left 5 right 5</code></li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Pseudomotor-basics---Slit">Pseudomotor basics - Slit<a class="anchor-link" href="#Pseudomotor-basics---Slit">&#182;</a></h3><ul>
+<li><code>Slit</code> controller - Sardana's standard slit controller</li>
+<li>Physical axes = motors that will be moved</li>
+<li>Pseudo axes = virtual axes consisting of physical axes</li>
+<li><code>pseudo_motor_roles</code> and <code>motor_roles</code> class members defines number of pseudo and physical axes used by the controller</li>
+<li>Instantiate vertical slits controller: <code>defctrl Slit vertctrl sl2t=top sl2b=bottom Gap=gapvert Offset=offsetvert</code></li>
+<li>Instantiate horizontal slits controller: <code>defctrl Slit horctrl sl2t=right sl2b=left Gap=gaphor Offset=offsethor</code></li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Inside-Slit-controller">Inside Slit controller<a class="anchor-link" href="#Inside-Slit-controller">&#182;</a></h3><ul>
+<li><code>CalcPhysical</code> method, for calculating physical axes positions based on pseudo axes position<ul>
+<li>Calculate half_gap</li>
+<li>top = offset + half_gap </li>
+<li>Bottom would be offset - half_gap if directions were common</li>
+<li>Since the directions are opposit bottom = half_gap - offset</li>
+</ul>
+</li>
+<li><code>CalcPseudo</code> method, for calculating pseudo axes positions based on physical ones<ul>
+<li>gap = bottom + top</li>
+<li>offset = top - half_gap</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Play-with-the-slits">Play with the slits<a class="anchor-link" href="#Play-with-the-slits">&#182;</a></h3><ul>
+<li>Open the gaps: <code>mv gapvert 10 gaphor 10</code></li>
+<li>Make a scan of offset: <code>dscan offsetvert -40 40 8 0.1</code></li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Data-acquisition-controllers">Data acquisition controllers<a class="anchor-link" href="#Data-acquisition-controllers">&#182;</a></h1><p><br>
+<br>
+<img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+Sardana-Training by ALBA Synchrotron is licensed under the Creative Commons Attribution 4.0 International License.<br>
+To view a copy of this license, visit <a href="http://creativecommons.org/licenses/by/4.0/">http://creativecommons.org/licenses/by/4.0/</a>.</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Contents">Contents<a class="anchor-link" href="#Contents">&#182;</a></h2><ul>
+<li>Writing counter/timer controller - Network Trafic Counter</li>
+<li>Playing with Blender Detector - 2D experimental channel controller</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Network-Traffic-Counter">Network Traffic Counter<a class="anchor-link" href="#Network-Traffic-Counter">&#182;</a></h2><h3 id="How-to-write-a-counter/timer-controller">How to write a counter/timer controller<a class="anchor-link" href="#How-to-write-a-counter/timer-controller">&#182;</a></h3>
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Network-Traffic-Counter">Network Traffic Counter<a class="anchor-link" href="#Network-Traffic-Counter">&#182;</a></h3><ul>
+<li>Open the code: <code>kwrite sardana-training/controllers/templates/NetworkTrafficCTCtrl.py</code></li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Network-Traffic-Counter">Network Traffic Counter<a class="anchor-link" href="#Network-Traffic-Counter">&#182;</a></h3><ul>
+<li>Network traffic counter counts bytes that pass via a network interface (both ways)</li>
+<li>Demo:<ul>
+<li>Directly from the system: <code>cat /proc/net/dev | grep eth0</code></li>
+<li>Using python function:<ul>
+<li><code>cd ~/sardana-training/controllers/</code></li>
+<li><code>python3 -c "from NetworkTrafficCTCtrl import read_network_counts; print(read_network_counts('eth0'))"</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Writing-constructor"><a href="http://www.sardana-controls.org/devel/howto_controllers/howto_controller.html#constructor">Writing constructor</a><a class="anchor-link" href="#Writing-constructor">&#182;</a></h3><ul>
+<li>Constructor<ul>
+<li>Called on: controllers creation, pool startup and controller's code reload</li>
+<li>Accepts arguments: instance (name of the controller instance) and properties (dictionary with the controller properties)</li>
+<li>If an exception is raised when constructing the controller, the controller automatically gets into the Fault state and its status describes the exception that occured</li>
+</ul>
+</li>
+<li><a href="http://www.sardana-controls.org/devel/howto_controllers/howto_controller.html#extra-controller-properties">Define controller property</a> <code>interface</code></li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Writing-constructor"><a href="http://www.sardana-controls.org/devel/howto_controllers/howto_controller.html#constructor">Writing constructor</a><a class="anchor-link" href="#Writing-constructor">&#182;</a></h3><ul>
+<li>Counter will work on the following principle:<ul>
+<li>Load of the timer will store the integration time in the cache</li>
+<li>Start of the counting will latch the current number of bytes</li>
+<li>Start of the counting will define the end acquisition time (current time + integration time)</li>
+</ul>
+</li>
+<li>In the constructor we need to instantiate the necessary variables:<ul>
+<li>acq_time = 1</li>
+<li>acq_end_time = time.time()</li>
+<li>start_counts = 0</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Instantiate-controller">Instantiate controller<a class="anchor-link" href="#Instantiate-controller">&#182;</a></h3><ul>
+<li>Deploy controller: <code>ln -s ~/sardana-training/controllers/templates/NetworkTrafficCTCtrl.py ~/controllers</code></li>
+<li>Load it in the system - in spock: <code>addctrllib NetworkTrafficCTCtrl</code></li>
+<li>Create an instance of the controller: <code>defctrl NetworkTrafficCounterTimerController netctrl interface eth0</code></li>
+<li>Ask for controllers state: <code>netctrl.state()</code></li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Implement-StateOne"><a href="http://www.sardana-controls.org/devel/howto_controllers/howto_controller.html#get-axis-state">Implement StateOne</a><a class="anchor-link" href="#Implement-StateOne">&#182;</a></h3><ul>
+<li>Assume state is On</li>
+<li>Only if current time is less then the acq_end_time return Moving state</li>
+<li>IMPORTANT: due to <a href="https://github.com/sardana-org/sardana/issues/621">sardana-org/sardana#621</a> return an empty status <code>""</code></li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Implement-LoadOne"><a href="http://www.sardana-controls.org/devel/howto_controllers/howto_countertimercontroller.html#load-a-counter">Implement LoadOne</a><a class="anchor-link" href="#Implement-LoadOne">&#182;</a></h3><ul>
+<li>receives either integration time or monitor counts (negative number) as arguments *</li>
+<li><p>is called only on the controller's timer or monitor</p>
+</li>
+<li><p>store the integration time in the cache <code>acq_time</code></p>
+</li>
+</ul>
+<p>* An advanced API is available for continuous acquisitions e.g. continuous scans</p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Implement-ReadOne"><a href="http://www.sardana-controls.org/devel/howto_controllers/howto_countertimercontroller.html#get-counter-value">Implement ReadOne</a><a class="anchor-link" href="#Implement-ReadOne">&#182;</a></h3><ul>
+<li>returns a single counter value</li>
+<li><p>is called multiple times during the acquisition operation</p>
+</li>
+<li><p>latch network bytes</p>
+</li>
+<li>return a difference between the current network bytes and <code>start_counts</code></li>
+</ul>
+<p>* An advanced API is available for continuous acquisitions e.g. continuous scans</p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Instantiate-net-counter">Instantiate net counter<a class="anchor-link" href="#Instantiate-net-counter">&#182;</a></h3><ul>
+<li>Reload controller code: <code>relctrlcls NetworkTrafficCounterTimerController</code> </li>
+<li>Create motor instance: <code>defelem net netctrl 1</code></li>
+<li>Ask for motor state: <code>net.state()</code></li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Implement-StartOne"><a href="http://www.sardana-controls.org/devel/howto_controllers/howto_countertimercontroller.html#start-a-counter">Implement StartOne</a><a class="anchor-link" href="#Implement-StartOne">&#182;</a></h3><ul>
+<li>receives intergation timer or monitor count as argument</li>
+<li>latch the current bytes to <code>start_counts</code> and calcultate the end acquisition time in <code>acq_end_time</code></li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Demonstrate-single-acquisition-with-net-counter">Demonstrate single acquisition with net counter<a class="anchor-link" href="#Demonstrate-single-acquisition-with-net-counter">&#182;</a></h3><ul>
+<li>Reload controller code: <code>relctrlcls NetworkTrafficCounterTimerController</code> </li>
+<li><code>uct 1 net</code> -&gt; zero counts!</li>
+<li>Install <code>wget</code> tool and get sardana CHANGELOG while long counting e.g. <code>uct net 10</code> execute:<ul>
+<li><code>wget https://github.com/sardana-org/sardana/blob/develop/CHANGELOG.md</code></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Blender-Detector">Blender Detector<a class="anchor-link" href="#Blender-Detector">&#182;</a></h2><h3 id="Play-with-the-2D-experimental-channel-on-example-of-Blender-Detector">Play with the 2D experimental channel on example of Blender Detector<a class="anchor-link" href="#Play-with-the-2D-experimental-channel-on-example-of-Blender-Detector">&#182;</a></h3>
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Instantiate-controller-and-experimental-channels">Instantiate controller and experimental channels<a class="anchor-link" href="#Instantiate-controller-and-experimental-channels">&#182;</a></h3><ul>
+<li>Deploy controller: <code>ln -s ~/sardana-training/controllers/Blender2DCtrl.py ~/controllers</code></li>
+<li>Load it in the system - in spock: <code>addctrllib Blender2DCtrl</code></li>
+<li>Create an instance of the controller: <code>defctrl Blender2DController ble2dctrl</code></li>
+<li>Ask for controllers state: <code>ble2dctrl.state()</code></li>
+<li>Create an instance of the 2D experimental channel: <code>defelem ble2d ble2dctrl</code></li>
+<li>Ask for channels state: <code>ble2d.state()</code></li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Acquire-with-the-detector---data-transfer">Acquire with the detector - data transfer<a class="anchor-link" href="#Acquire-with-the-detector---data-transfer">&#182;</a></h3><ul>
+<li>Configure timer: `ble2d.timer = "__self"</li>
+<li><code>ct 1 ble2d</code></li>
+<li>Show image (<code>value</code> attribute): <code>taurus form ble2d</code></li>
+<li>In <code>expconf</code> define measurement group and configure storage to HDF5 file</li>
+<li><code>mv gapvert 10 gaphor 10 offsetvert 0 offsethor 0</code></li>
+<li><code>mv left 50</code></li>
+<li><code>dscan offsetvert -10 10 10 0.1</code></li>
+<li>Show images with <code>silx view</code> (remember to close <code>silx</code> afterwards)</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Acquire-with-the-detector---data-references-transfer">Acquire with the detector - data references transfer<a class="anchor-link" href="#Acquire-with-the-detector---data-references-transfer">&#182;</a></h3><ul>
+<li>In <code>expconf</code> configure data referencing:<ul>
+<li><em>Ref Enabled</em> -&gt; True</li>
+<li><em>Ref Pattern</em> -&gt; <code>h5file:///tmp/ble2d_img{image_nb:03d}.h5</code></li>
+</ul>
+</li>
+<li>Repeat the last scan: <code>dscan offsetvert -10 10 10 0.1</code></li>
+<li>Show images via VDS with <code>silx view</code> (remember to close <code>silx</code> afterwards)</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="ZeroD-channels---software-sampling">ZeroD channels - software sampling<a class="anchor-link" href="#ZeroD-channels---software-sampling">&#182;</a></h2><ul>
+<li>Read scalar values but without counting capability</li>
+<li>Read loop with value buffer</li>
+<li>Apply custom transformation to the gathered values</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Pseudo-counters---transformation-of-counter-values">Pseudo counters - transformation of counter values<a class="anchor-link" href="#Pseudo-counters---transformation-of-counter-values">&#182;</a></h2><ul>
+<li>Perform calculations on counter values</li>
+<li>Provide results as another measurement channel</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Configuration-tools">Configuration tools<a class="anchor-link" href="#Configuration-tools">&#182;</a></h2><ul>
+<li>Full-fledged solution is not ready yet</li>
+<li>Few different options:<ul>
+<li><code>dsconfig</code> and <code>sardana-dsconfig</code> from MAX IV</li>
+<li>Ansible plugin for configuring Tango database</li>
+<li>FODS (flat ODS) spreadsheets</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Eval-scheme">Eval scheme<a class="anchor-link" href="#Eval-scheme">&#182;</a></h2><ul>
+<li>Evaluate any Python expression and use its value as Taurus data source</li>
+<li>Example: <code>eval:123.4*{tango:sys/tg_test/1/double_scalar}</code></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Advanced-motion-features">Advanced motion features<a class="anchor-link" href="#Advanced-motion-features">&#182;</a></h2><ul>
+<li>Possibility to fine tune moveables behaviour</li>
+<li>Backlash:<ul>
+<li>Over travel and go back</li>
+<li>Stop at given position always from one direction</li>
+</ul>
+</li>
+<li>Limit protection:<ul>
+<li>In addition to hardware limit switches</li>
+<li>Software limits, that are checked before starting motion</li>
+</ul>
+</li>
+<li>Position calibration:<ul>
+<li>Used to change the reference frame for axis movement</li>
+<li>Sign - allows to change the apparent movement direction in software</li>
+<li>Offset - change software position values</li>
+</ul>
+</li>
+<li>Drift correction:<ul>
+<li>Correct positioning inaccuracy of the hardware</li>
+<li>Prevent accumulation of positioning errors</li>
+<li>For detailed description <a href="https://sardana-controls.org/devel/api/api_pseudomotor.html#sardana-pseudomotor-api-driftcorrection">check the documentation</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Synchronization">Synchronization<a class="anchor-link" href="#Synchronization">&#182;</a></h2><ul>
+<li>Synchronization types<ul>
+<li>Software - best-effort software synchronizer</li>
+<li>Hardware - make use of dedicated synchronization hardware</li>
+</ul>
+</li>
+<li>Synchronization modes<ul>
+<li>Trigger - start measurement for given time on single trigger event</li>
+<li>Gate - measure for how long the gate signal is active</li>
+<li>Start - run whole measurement sequence on single start event</li>
+</ul>
+</li>
+<li>Synchronization domains<ul>
+<li>Time - synchronize measurements based on given time and duration</li>
+<li>Position - synchronize measurements with moveable position</li>
+</ul>
+</li>
+<li>[TODO] equidistant, non-equidistant</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Units-support">Units support<a class="anchor-link" href="#Units-support">&#182;</a></h2><ul>
+<li><code>pint</code> module</li>
+<li>Support for managing and displaying units of values</li>
+<li>Unit matching and conversion (?)</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="QtSpock">QtSpock<a class="anchor-link" href="#QtSpock">&#182;</a></h2><ul>
+<li>Simple way to embed Spock console inside Qt application</li>
+<li>Implemented as Qt widget</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Distributed-architecture">Distributed architecture<a class="anchor-link" href="#Distributed-architecture">&#182;</a></h2><ul>
+<li>Base components: Pool, MacroServer, Door</li>
+<li>Possibility to run with multiple Pools, MacroServers and Doors</li>
+<li>Many combinations for interconnection of these components are possible</li>
+<li>Whole system can run on a single machine as well as on multiple ones</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Diffractometer-control">Diffractometer control<a class="anchor-link" href="#Diffractometer-control">&#182;</a></h2><ul>
+<li>Integrated controllers and macros for different types of diffractometers</li>
+<li>Support for HKL calculations</li>
+<li>Pseudomotor based interface</li>
+<li>Dedicated set of macros (e.g. <code>hklscan</code>)</li>
+<li>More details in <a href="https://sardana-controls.org/users/diffractometer.html">the documentation</a></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Integration-with-EPICS">Integration with EPICS<a class="anchor-link" href="#Integration-with-EPICS">&#182;</a></h2><ul>
+<li>Taurus <code>ca</code> or <code>epics</code> scheme gives direct access to EPICS system</li>
+<li>EPICS controller built with <code>pyepics</code></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div></section></section>
+</div>
+</div>
+
+<script>
+
+require(
+    {
+      // it makes sense to wait a little bit when you are loading
+      // reveal from a cdn in a slow connection environment
+      waitSeconds: 15
+    },
+    [
+      "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/lib/js/head.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/js/reveal.js"
+    ],
+
+    function(head, Reveal){
+
+        // Full list of configuration options available here: https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+
+            transition: "slide",
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/lib/js/classList.js",
+                  condition: function() { return !document.body.classList; } },
+                { src: "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/plugin/notes/notes.js",
+                  async: true,
+                  condition: function() { return !!document.body.classList; } }
+            ]
+        });
+
+        var update = function(event){
+          if(MathJax.Hub.getAllJax(Reveal.getCurrentSlide())){
+            MathJax.Hub.Rerender(Reveal.getCurrentSlide());
+          }
+        };
+
+        Reveal.addEventListener('slidechanged', update);
+
+        function setScrollingSlide() {
+            var scroll = false
+            if (scroll === true) {
+              var h = $('.reveal').height() * 0.95;
+              $('section.present').find('section')
+                .filter(function() {
+                  return $(this).height() > h;
+                })
+                .css('height', 'calc(95vh)')
+                .css('overflow-y', 'scroll')
+                .css('margin-top', '20px');
+            }
+        }
+
+        // check and set the scrolling slide every time the slide change
+        Reveal.addEventListener('slidechanged', setScrollingSlide);
+
+    }
+
+);
+</script>
+
+</body>
 
 
 </html>
